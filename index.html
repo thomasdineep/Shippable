@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>WELCOME</title>
+		<link rel="stylesheet" type="text/css" href="http://getbootstrap.com/dist/css/bootstrap.min.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h2>Github Repository Open Issue Count</h2>
+			<div class="row clearfix">
+				<div class="col-md-12">
+					<form action="/" method="POST">
+						<div class="form-group">
+			    			<label for="url">Github Url</label>
+			    			<input type="text" name="url" class="form-control" placeholder="https://github.com/Shippable/support" required>
+			  			</div>
+		  				<button type="submit" class="btn btn-primary pull-right">Submit</button>	
+					</form>		
+				</div>
+			</div>
+
+			{% if issues %}
+			<div class="row">
+				<div class="col-md-12">
+					<div><b>Github url</b>: {{url}}</div>
+					<ul class="list-group">
+					  	<li class="list-group-item">
+					    	<span class="badge">{{ issues.open }}</span>
+					    	Total number of open issues
+					  	</li>
+					  	<li class="list-group-item">
+					    	<span class="badge">{{ issues.last24hr }}</span>
+					    	Number of open issues that were opened in the last 24 hours
+					  	</li>
+					  	<li class="list-group-item">
+					    	<span class="badge">{{ issues.last24hr_7days }}</span>
+					    	Number of open issues that were opened more than 24 hours ago but less than 7 days ago
+					  	</li>
+					  	<li class="list-group-item">
+					    	<span class="badge">{{ issues.more_7days }}</span>
+					    	Number of open issues that were opened more than 7 days ago 
+					  	</li>
+					</ul>
+				</div>
+			</div>
+			{% endif %}
+			
+			{% if error %}
+				<div class="row">
+					<div class="col-md-12">
+						<div><b>Invalid Url !!! </b>: {{url}}</div>
+						<div>Url should be in format <b>https://github.com/{org name or username}/{repo name}/</div>
+					</div>
+				</div>
+			{% endif %}
+		</div>	
+	</body>
+</html>
